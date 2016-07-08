@@ -1,0 +1,18 @@
+<h2>Featured Streams</h2>
+{{#each featured}}
+    <div class="featured-stream-box">
+        <div class="featured-stream-title">
+            <div class="ellipsis">{{ title }}</div>
+        </div>
+        <div>
+            <a class="link" title="{{ this.stream.channel.display_name }}" href="#/live/{{ this.stream.channel.name }}">
+                <img src="{{ image }}" class="featured-stream-preview" width="140px" height="78px" alt="{{ this.stream.channel.name }}" />
+            </a>
+        </div>
+        <ul class="featured-stream-info">
+            <li><img class="middle-align" src="resources/images/profile-icon.png" alt="Download" /><span class="bold middle-align"> <a class="link" title="{{ this.stream.channel.display_name }}" href="/#/download/{{ this.stream.channel.name }}">{{ this.stream.channel.display_name }}</a></span></li>
+            <li><img class="middle-align" src="resources/images/joystick-icon.png" alt="Game" /><span class="bold middle-align"> {{ this.stream.game }}</span></li>
+            <li><img class="middle-align" src="resources/images/eye-icon.png" alt="Viewers" /><span class="bold middle-align"> {{ this.stream.viewers }}</span></li>
+        </ul>
+    </div>
+{{/each}}

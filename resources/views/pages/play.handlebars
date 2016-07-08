@@ -1,0 +1,21 @@
+<section class="section section-default">
+    {{#if error}}
+        <div class="section-title">
+            <h2>{{ error }}</h2>
+        </div>
+        <div class="section-body">
+            <div class="section-content">
+                <span class="error">{{ message }}</span>
+            </div>
+        </div>
+    {{else}}
+        <div class="section-title">
+            <h2>{{ title }}</h2>
+        </div>
+        <div class="section-body">
+            <div class="section-content">
+                <div id="twitch-player"></div>
+            </div>
+        </div>
+    {{/if}}
+</section>

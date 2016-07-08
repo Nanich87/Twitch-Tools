@@ -1,0 +1,35 @@
+<section class="live-section">
+    {{#if data.stream.game}}
+        <div class="game-title">
+            <h2>{{ data.stream.channel.display_name }} is streaming {{ data.stream.game }}</h2>
+        </div>
+        <div class="section-body">
+            <div class="section-content">
+                <div id="twitch-player"></div>
+            </div>
+            <div class="section-content">
+                Channel: <span style="font-weight: bold;"><a style="color: #3d3d3d;" href="/#/download/{{ data.stream.channel.name }}">{{ data.stream.channel.display_name }}</a></span>
+                Game: <span style="font-weight: bold;">{{ data.stream.game }}</span>
+                Viewers: <span id="viewers" style="font-weight: bold;">{{ data.stream.viewers }}</span>
+            </div>
+        </div>
+    {{else}}
+        <div class="game-title">
+            <h2>Offline</h2>
+        </div>
+        <div class="section-body">
+            <div class="section-content">
+                <span class="error">Channel is offline!</span>
+            </div>
+        </div>
+    {{/if}}
+</section>
+<aside class="chat-section">
+    <iframe frameborder="0" 
+        scrolling="no" 
+        id="chat_embed" 
+        src="http://www.twitch.tv/{{ channel }}/chat" 
+        height="500" 
+        width="400">
+    </iframe>
+</aside>

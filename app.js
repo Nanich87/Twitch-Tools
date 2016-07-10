@@ -1,8 +1,8 @@
-/* global controller */
+/* global pageController */
 
 (function () {
     var container = '#content';
-    controller.init(container);
+    pageController.init(container);
 
     var app = Sammy(container, function () {
         this.get('#/', function () {
@@ -10,52 +10,52 @@
         });
 
         this.get('#/home', function () {
-            controller.home();
+            pageController.home();
         });
 
         this.get('#/download', function () {
-            controller.download();
+            pageController.download();
         });
 
         this.get('#/download/:name', function (name) {
-            controller.profile(name);
+            pageController.profile(name);
         });
 
         this.get('#/live/:channel', function (channel) {
-            controller.live(channel);
+            pageController.live(channel);
         });
 
         this.get('#/play/:video', function (video) {
-            controller.play(video);
+            pageController.play(video);
         });
 
         this.get('#/login', function () {
-            controller.login();
+            pageController.login();
         });
         
         this.get('#/login/:token', function (token) {
-            controller.auth(token);
+            pageController.auth(token);
             this.redirect('#/home');
         });
 
         this.get('#/about', function () {
-            controller.about();
+            pageController.about();
         });
 
         this.get('#/contact', function () {
-            controller.contact();
+            pageController.contact();
         });
         
         this.get('#/multitwitch', function () {
-            controller.multitwitch(null);
+            pageController.multitwitch(null);
         });
         
         this.get(/\#\/multitwitch\/(.*)/, function (channels) {
-            controller.multitwitch(channels);
+            pageController.multitwitch(channels);
         });
 
         this.notFound = function () {
-            controller.home();
+            pageController.home();
         };
     });
 

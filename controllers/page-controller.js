@@ -1,6 +1,6 @@
 /* global data, lang, moment, pagination, toastr, page, validator, swfobject, Twitch, templates */
 
-var controller = (function () {
+var pageController = (function () {
 
     var streamViewersTimer;
     var container = null;

@@ -84,10 +84,10 @@
         <script src="libs/handlebars.js"></script>
         <script src="libs/moment.js"></script>
         <script src="libs/toastr.min.js"></script>
-        <script src="//ajax.googleapis.com/ajax/libs/swfobject/2.2/swfobject.js"></script>
+        <script src="libs/swfobject.js"></script>
 
         <!-- Application: Loaders -->
-        <script src="app/jsonRequester.js"></script>
+        <script src="app/json-requester.js"></script>
         <script src="app/data.js"></script>
         <script src="app/templates.js"></script>
 
@@ -98,7 +98,7 @@
         <script src="helpers/page.js"></script>
 
         <!-- Application: Controllers -->
-        <script src="controllers/controller.js"></script>
+        <script src="controllers/page-controller.js"></script>
 
         <!-- Application: Start -->
         <script src="app.js"></script>

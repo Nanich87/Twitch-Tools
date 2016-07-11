@@ -1,8 +1,6 @@
 /* global data, lang, moment, pagination, toastr, page, validator, swfobject, Twitch, templates */
 
 var pageController = (function () {
-
-    var streamViewersTimer;
     var container = null;
     var selectedLanguage = 'en';
     var config = {
@@ -124,13 +122,6 @@ var pageController = (function () {
                                 list.append(twitchPlayerItem)
                                         .append(externalPlayerItem);
 
-//                                $.each(response.file, function (i, v) {
-//                                    var qualityItem = $(document.createElement('textarea'));
-//                                    qualityItem.text(v['url']);
-//
-//                                    list.append(qualityItem);
-//                                });
-
                                 content.html(list);
                             } else {
                                 toastr.error(lang.error.channel.name[selectedLanguage]);
@@ -201,8 +192,8 @@ var pageController = (function () {
         page.nav.active(4);
         $(container).load('../resources/views/pages/download.html', function () {
             var uxButtonDownloadVideo = $('#download-video');
-            
-            data.stats.totalDownloads().then(function (response){
+
+            data.stats.totalDownloads().then(function (response) {
                 $('#total-downloads').html(response.downloads);
             });
 
@@ -225,7 +216,7 @@ var pageController = (function () {
                         .get(id)
                         .then(function (response) {
                             data.stats.download(id);
-                    
+
                             var title = $(document.createElement('p'));
                             title.text('Download parts:');
 
@@ -240,87 +231,6 @@ var pageController = (function () {
                         });
             });
         });
-    }
-
-    function live(context) {
-        clearTimeout(streamViewersTimer);
-        page.nav.active(1);
-        templates.get('live')
-                .then(function (template) {
-                    data.channel.get(context.params.channel)
-                            .then(function (result) {
-                                //console.log(result);
-                                
-                                var stream = {
-                                    data: result,
-                                    channel: context.params.channel
-                                };
-                                context.$element().html(template(stream));
-                                if (result.stream === null) {
-                                    document.title = 'Channel ' + context.params.channel + ' is offline!';
-                                } else {
-                                    data.stats.live(result.stream.channel.name);
-                                    document.title = result.stream.channel.display_name + ': ' + result.stream.game;
-                                    swfobject.embedSWF(
-                                            "//www-cdn.jtvnw.net/swflibs/TwitchPlayer.swf",
-                                            "twitch-player",
-                                            "640",
-                                            "400",
-                                            "11",
-                                            null,
-                                            {
-                                                eventsCallback: data.channel.live,
-                                                channel: context.params.channel,
-                                                embed: 1,
-                                                auto_play: "true"
-                                            },
-                                    {
-                                        allowScriptAccess: "always",
-                                        allowFullScreen: "true"
-                                    });
-
-                                    streamViewersTimer = setInterval(function () {
-                                        data.channel.get(result.stream.channel.name)
-                                                .then(function (response) {
-                                                    $("#viewers").html(response.stream.viewers);
-                                                });
-                                    }, 10000);
-                                }
-                            });
-                });
-    }
-
-    function play(context) {
-        page.nav.active(1);
-        templates.get('play')
-                .then(function (template) {
-                    data.video.get(context.params.video)
-                            .then(function (result) {
-                                context.$element().html(template(result));
-                                if (result.hasOwnProperty('error') && result.hasOwnProperty('message')) {
-                                    document.title = result.error + ': ' + result.message;
-                                } else {
-                                    document.title = result.channel.display_name + ': ' + result.title;
-                                    swfobject.embedSWF(
-                                            "//www-cdn.jtvnw.net/swflibs/TwitchPlayer.swf",
-                                            "twitch-player",
-                                            "640",
-                                            "400",
-                                            "11",
-                                            null,
-                                            {
-                                                eventsCallback: data.channel.play,
-                                                videoId: context.params.video,
-                                                embed: 1,
-                                                auto_play: "true"
-                                            },
-                                    {
-                                        allowScriptAccess: "always",
-                                        allowFullScreen: "true"
-                                    });
-                                }
-                            });
-                });
     }
 
     function profile(contex) {
@@ -526,8 +436,6 @@ var pageController = (function () {
         download: download,
         about: about,
         contact: contact,
-        live: live,
-        play: play,
         profile: profile,
         login: login,
         auth: auth

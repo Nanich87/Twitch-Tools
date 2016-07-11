@@ -99,6 +99,7 @@
 
         <!-- Application: Controllers -->
         <script src="controllers/page-controller.js"></script>
+        <script src="controllers/video-controller.js"></script>
         <script src="controllers/multi-twitch-controller.js"></script>
 
         <!-- Application: Start -->

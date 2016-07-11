@@ -1,4 +1,4 @@
-/* global pageController, multiTwitchController */
+/* global pageController, multiTwitchController, videoController */
 
 (function () {
     var container = '#content';
@@ -24,11 +24,11 @@
         });
 
         this.get('#/live/:channel', function (channel) {
-            pageController.live(channel);
+            videoController.live(channel);
         });
 
         this.get('#/play/:video', function (video) {
-            pageController.play(video);
+            videoController.play(video);
         });
 
         this.get('#/login', function () {
@@ -37,6 +37,7 @@
 
         this.get('#/login/:token', function (token) {
             pageController.auth(token);
+            
             this.redirect('#/home');
         });
 

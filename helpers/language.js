@@ -10,6 +10,9 @@ var lang = (function () {
                 },
                 offline: {
                     en: 'Channel is offline!'
+                },
+                duplicate: {
+                    en: 'This channel has already been added!' 
                 }
             },
             url: {

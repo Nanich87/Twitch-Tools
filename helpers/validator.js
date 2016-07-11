@@ -5,8 +5,8 @@ var validator = (function () {
             return false;
         }
 
-        var channelNamePattern = new RegExp("/^[a-zA-Z0-9_]{4,25}$/u");
-        if (channelNamePattern.test(name) === false) {
+        var channelNamePattern = new RegExp("/^[a-z0-9_]{4,25}$/ui");
+        if (channelNamePattern.test(name)) {
             return false;
         }
 

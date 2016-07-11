@@ -442,7 +442,7 @@ p {
 
 /* MultiTwitch */
 
-#streams-container {
+#players-container {
     float: left;
     padding-top: 2px;
     width: calc(100% - 250px);

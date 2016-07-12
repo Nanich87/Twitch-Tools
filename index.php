@@ -101,6 +101,7 @@
         <script src="controllers/page-controller.js"></script>
         <script src="controllers/video-controller.js"></script>
         <script src="controllers/multi-twitch-controller.js"></script>
+        <script src="controllers/login-controller.js"></script>
 
         <!-- Application: Start -->
         <script src="app.js"></script>

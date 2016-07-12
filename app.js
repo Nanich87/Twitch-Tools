@@ -1,4 +1,4 @@
-/* global pageController, multiTwitchController, videoController */
+/* global pageController, multiTwitchController, videoController, loginController */
 
 (function () {
     var container = '#content';
@@ -32,11 +32,11 @@
         });
 
         this.get('#/login', function () {
-            pageController.login();
+            loginController.init(container);
         });
 
         this.get('#/login/:token', function (token) {
-            pageController.auth(token);
+            loginController.auth(token);
             
             this.redirect('#/home');
         });

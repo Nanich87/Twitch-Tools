@@ -409,35 +409,12 @@ var pageController = (function () {
         });
     }
 
-    function login() {
-        document.title = 'Twitch Tools: Login';
-
-        page.nav.active(5);
-
-        $(container).load('../resources/views/pages/login.html', function () {
-
-        });
-    }
-
-    function auth(contex) {
-        var access_token = contex.params.token || null;
-        if (access_token !== null) {
-            data.user.auth(access_token)
-                    .then(function (response) {
-                        localStorage.setItem('access_token', access_token);
-                        localStorage.setItem('username', response.token.user_name);
-                    });
-        }
-    }
-
     return {
         init: init,
         home: home,
         download: download,
         about: about,
         contact: contact,
-        profile: profile,
-        login: login,
-        auth: auth
+        profile: profile
     };
 }());

@@ -2,6 +2,10 @@
 
 var page = (function () {
 
+    function setPageTitle(title) {
+        document.title = title;
+    }
+
     function trimText(text, length) {
         if (text === null) {
             return 'No Game';
@@ -202,6 +206,9 @@ var page = (function () {
     }
 
     return {
+        title: {
+            set: setPageTitle
+        },
         section: {
             setActive: setActiveSection,
             visible: setVisibility,

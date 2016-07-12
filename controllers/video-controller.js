@@ -1,13 +1,9 @@
-/* global page, validator, selectedLanguage, toastr, lang, templates, data, swfobject */
+/* global page, templates, data, lang, swfobject */
 
 var videoController = (function () {
     var streamViewersTimer;
 
-    function setPageTitle(title) {
-        document.title = title;
-    }
-
-    function playVideo(context) {
+    function playVideo(context, language) {
         page.nav.active(1);
 
         templates.get('play')
@@ -17,10 +13,12 @@ var videoController = (function () {
                                 context.$element().html(template(result));
 
                                 if (result.hasOwnProperty('error') && result.hasOwnProperty('message')) {
-                                    setPageTitle(result.error + ': ' + result.message);
+                                    page.title.set(lang.video.notFound[language]);
                                 } else {
-                                    setPageTitle(result.channel.display_name + ': ' + result.title);
-                                    
+                                    var pageTitle = result.channel.display_name + ': ' + result.title;
+
+                                    page.title.set(pageTitle);
+
                                     swfobject.embedSWF(
                                             "//www-cdn.jtvnw.net/swflibs/TwitchPlayer.swf",
                                             "twitch-player",
@@ -59,13 +57,19 @@ var videoController = (function () {
 
                                 context.$element().html(template(stream));
 
+                                var pageTitle = '';
+
                                 if (result.stream === null) {
-                                    setPageTitle('Channel ' + context.params.channel + ' is offline!');
+                                    pageTitle = 'Channel ' + context.params.channel + ' is offline!';
+
+                                    page.title.set(pageTitle);
                                 } else {
                                     data.stats.live(result.stream.channel.name);
-                                    
-                                    setPageTitle(result.stream.channel.display_name + ': ' + result.stream.game);
-                                    
+
+                                    pageTitle = result.stream.channel.display_name + ': ' + result.stream.game;
+
+                                    page.title.set(pageTitle);
+
                                     swfobject.embedSWF(
                                             "//www-cdn.jtvnw.net/swflibs/TwitchPlayer.swf",
                                             "twitch-player",

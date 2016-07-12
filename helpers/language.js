@@ -1,5 +1,10 @@
 var lang = (function () {
     return {
+        video: {
+            notFound: {
+                en: 'This video cannot be found!'
+            }
+        },
         error: {
             channel: {
                 name: {
@@ -12,7 +17,7 @@ var lang = (function () {
                     en: 'Channel is offline!'
                 },
                 duplicate: {
-                    en: 'This channel has already been added!' 
+                    en: 'This channel has already been added!'
                 }
             },
             url: {

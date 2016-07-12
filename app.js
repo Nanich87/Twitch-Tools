@@ -28,7 +28,7 @@
         });
 
         this.get('#/play/:video', function (video) {
-            videoController.play(video);
+            videoController.play(video, language);
         });
 
         this.get('#/login', function () {

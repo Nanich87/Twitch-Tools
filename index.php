@@ -65,7 +65,7 @@
                 <div class="fb-like" data-href="https://www.facebook.com/TwitchTools" data-layout="button_count" data-action="like" data-show-faces="true" data-share="true"></div>
             </div>
             <div class="panel center-align">
-                <span class="small-text">Copyright &copy; 2015-2016 :: Twitch Tools v1.0.20160123 :: <a title="SixEightOne" href="http://sixeightone.eu"><span class="white">SixEightOne.eu</span></a></span>
+                <span class="small-text">Copyright &copy; 2015-2016 :: <a targer="_blank" href="https://github.com/Nanich87/Twitch-Tools">Twitch Tools</a> v1.0.20160123 :: <a title="SixEightOne" href="http://sixeightone.eu">SixEightOne.eu</a></span>
             </div>
             <div class="panel center-align">
                 <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">

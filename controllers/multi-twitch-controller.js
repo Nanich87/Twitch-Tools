@@ -5,12 +5,8 @@ var multiTwitchController = (function () {
     var pageId = 2;
     var pageTemplate = '../resources/views/pages/multitwitch.handlebars';
 
-    function setPageTitle(title) {
-        document.title = title;
-    }
-
     function initPage(container, language, context) {
-        setPageTitle(pageTitle);
+        page.title.set(pageTitle);
 
         page.nav.active(pageId);
 

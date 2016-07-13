@@ -1,6 +1,6 @@
 /* global page, data, language, toastr, lang */
 
-var aboutController = (function () {
+var downloadController = (function () {
 
     var pageTitle = 'Twitch Tools: Download';
     var pageTemplate = '../resources/views/pages/download.html';

@@ -1,41 +1,18 @@
 /* global data, lang, moment, pagination, toastr, page, validator, swfobject, Twitch, templates */
 
-var pageController = (function () {
-    var container = null;
-    var selectedLanguage = 'en';
-    var config = {
-        videos: {
-            broadcasts: {
-                pagination: {
-                    activePage: 1,
-                    pageSize: 9
-                }
-            },
-            highlights: {
-                pagination: {
-                    activePage: 1,
-                    pageSize: 9
-                }
-            }
-        }
-    };
-    var videos = {
-        broadcasts: [],
-        highlights: []
-    };
+var homeController = (function () {
 
-    var loadingImage = page.image.createLoadingImage({src: 'resources/images/loading.png'});
+    var pageTitle = 'Twitch Tools: Home';
+    var pageTemplate = '../resources/views/pages/home.html';
 
-    function init(selector) {
-        container = selector;
-    }
-
-    function home() {
-        document.title = "Twitch Tools: Home";
+    function initPage(container, language) {
+        page.title.set(pageTitle);
 
         page.nav.active(1);
 
-        $(container).load('../resources/views/pages/home.html', function () {
+        var loadingImage = page.image.createLoadingImage({src: 'resources/images/loading.png'});
+
+        $(container).load(pageTemplate, function () {
             var user = $('.header-user-container');
 
             var featuredStreamsContainer = $('.featured');
@@ -44,15 +21,13 @@ var pageController = (function () {
             templates.get('featured-streams')
                     .then(function (template) {
                         data.stream.featured(6).then(function (streams) {
-                            console.log(streams.featured);
-//                            var featuredStreams = page.section.featured(streams.featured);
-//                            featuredStreamsContainer.html(featuredStreams);
                             var data = {
                                 featured: streams.featured
                             };
                             featuredStreamsContainer.html(template(data));
                         }, function () {
                             featuredStreamsContainer.empty();
+
                             toastr.error('Cannot get featured streams!');
                         });
                     });
@@ -71,7 +46,8 @@ var pageController = (function () {
             uxButtonStream.on('click', function () {
                 var channelName = channel.val().trim();
                 if (validator.validate.channel(channelName) === false) {
-                    toastr.error(lang.error.channel.name[selectedLanguage]);
+                    toastr.error(lang.error.channel.name[language]);
+
                     return;
                 }
 
@@ -81,8 +57,7 @@ var pageController = (function () {
                 var content = $(sectionSelector).find('div.section-content');
                 content.html(loadingImage);
 
-                data.channel
-                        .stream(channelName)
+                data.channel.stream(channelName)
                         .then(function (response) {
                             console.log(response);
                             data.channel.save(channelName);
@@ -124,7 +99,7 @@ var pageController = (function () {
 
                                 content.html(list);
                             } else {
-                                toastr.error(lang.error.channel.name[selectedLanguage]);
+                                toastr.error(lang.error.channel.name[language]);
                             }
                         });
             });
@@ -132,25 +107,24 @@ var pageController = (function () {
             uxButtonPreview.on('click', function () {
                 var channelName = channel.val().trim();
                 if (validator.validate.channel(channelName) === false) {
-                    toastr.error(lang.error.channel.name[selectedLanguage]);
+                    toastr.error(lang.error.channel.name[language]);
+
                     return;
                 }
 
-                data.channel
-                        .preview(channelName)
+                data.channel.preview(channelName)
                         .then(function (data) {
                             if (data.hasOwnProperty('stream') && data.stream !== null) {
                                 var sectionSelector = '#section-preview';
                                 page.section.setActive(sectionSelector);
 
                                 var content = $(sectionSelector).find('div.section-content');
-                                content
-                                        .html('<img class="stream-preview" src="' + data.stream.preview.medium + '" width="320px" height="180px" />')
+                                content.html('<img class="stream-preview" src="' + data.stream.preview.medium + '" width="320px" height="180px" />')
                                         .append('<h3>' + data.stream.channel.display_name + ' is playing ' + data.stream.game + '</h3>')
                                         .append('<div>' + data.stream.channel.status + '</div>')
                                         .append('<div>Viewers: ' + data.stream.viewers + ' | Followers: ' + data.stream.channel.followers + '</div>');
                             } else {
-                                toastr.error(lang.error.channel.offline[selectedLanguage]);
+                                toastr.error(lang.error.channel.offline[language]);
                             }
                         });
             });
@@ -158,7 +132,8 @@ var pageController = (function () {
             uxButtonDownload.on('click', function () {
                 var channelName = channel.val().trim();
                 if (validator.validate.channel(channelName) === false) {
-                    toastr.error(lang.error.channel.name[selectedLanguage]);
+                    toastr.error(lang.error.channel.name[language]);
+                    
                     return;
                 }
 
@@ -173,7 +148,6 @@ var pageController = (function () {
     }
 
     return {
-        init: init,
-        home: home
+        init: initPage
     };
 }());

@@ -98,7 +98,7 @@
         <script src="helpers/page.js"></script>
 
         <!-- Application: Controllers -->
-        <script src="controllers/page-controller.js"></script>
+        <script src="controllers/home-controller.js"></script>
         <script src="controllers/video-controller.js"></script>
         <script src="controllers/multi-twitch-controller.js"></script>
         <script src="controllers/login-controller.js"></script>

@@ -1,10 +1,8 @@
-/* global pageController, multiTwitchController, videoController, loginController, contactController, aboutController, downloadController, channelController */
+/* global multiTwitchController, videoController, loginController, contactController, aboutController, downloadController, channelController, homeController */
 
 (function () {
     var container = '#content';
     var language = 'en';
-
-    pageController.init(container);
 
     var app = Sammy(container, function () {
         this.get('#/', function () {
@@ -12,7 +10,7 @@
         });
 
         this.get('#/home', function () {
-            pageController.home();
+            homeController.init(container, language);
         });
 
         this.get('#/download', function () {
@@ -58,7 +56,7 @@
         });
 
         this.notFound = function () {
-            pageController.home();
+            homeController.init(container, language);
         };
     });
 

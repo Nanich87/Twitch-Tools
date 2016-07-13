@@ -103,6 +103,7 @@
         <script src="controllers/multi-twitch-controller.js"></script>
         <script src="controllers/login-controller.js"></script>
         <script src="controllers/contact-controller.js"></script>
+        <script src="controllers/about-controller.js"></script>
 
         <!-- Application: Start -->
         <script src="app.js"></script>

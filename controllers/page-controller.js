@@ -172,13 +172,6 @@ var pageController = (function () {
         });
     }
 
-    function about() {
-        document.title = "Twitch Tools: About";
-
-        page.nav.active(2);
-        $(container).load('../resources/views/pages/about.html');
-    }
-
     function download() {
         document.title = "Twitch Tools: Download";
 
@@ -406,7 +399,6 @@ var pageController = (function () {
         init: init,
         home: home,
         download: download,
-        about: about,
         profile: profile
     };
 }());

@@ -1,4 +1,4 @@
-/* global pageController, multiTwitchController, videoController, loginController, contactController */
+/* global pageController, multiTwitchController, videoController, loginController, contactController, aboutController */
 
 (function () {
     var container = '#content';
@@ -42,7 +42,7 @@
         });
 
         this.get('#/about', function () {
-            pageController.about();
+            aboutController.init(container);
         });
 
         this.get('#/contact', function () {

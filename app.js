@@ -1,4 +1,4 @@
-/* global pageController, multiTwitchController, videoController, loginController, contactController, aboutController, downloadController */
+/* global pageController, multiTwitchController, videoController, loginController, contactController, aboutController, downloadController, channelController */
 
 (function () {
     var container = '#content';
@@ -20,7 +20,7 @@
         });
 
         this.get('#/download/:name', function (name) {
-            pageController.profile(name);
+            channelController.init(name, container, language);
         });
 
         this.get('#/live/:channel', function (channel) {

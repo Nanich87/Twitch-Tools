@@ -105,6 +105,7 @@
         <script src="controllers/contact-controller.js"></script>
         <script src="controllers/about-controller.js"></script>
         <script src="controllers/download-controller.js"></script>
+        <script src="controllers/channel-controller.js"></script>
 
         <!-- Application: Start -->
         <script src="app.js"></script>

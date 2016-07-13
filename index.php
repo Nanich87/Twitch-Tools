@@ -104,6 +104,7 @@
         <script src="controllers/login-controller.js"></script>
         <script src="controllers/contact-controller.js"></script>
         <script src="controllers/about-controller.js"></script>
+        <script src="controllers/download-controller.js"></script>
 
         <!-- Application: Start -->
         <script src="app.js"></script>

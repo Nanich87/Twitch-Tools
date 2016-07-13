@@ -1,9 +1,9 @@
-/* global pageController, multiTwitchController, videoController, loginController, contactController, aboutController */
+/* global pageController, multiTwitchController, videoController, loginController, contactController, aboutController, downloadController */
 
 (function () {
     var container = '#content';
     var language = 'en';
-    
+
     pageController.init(container);
 
     var app = Sammy(container, function () {
@@ -16,7 +16,7 @@
         });
 
         this.get('#/download', function () {
-            pageController.download();
+            downloadController.init(container, language);
         });
 
         this.get('#/download/:name', function (name) {
@@ -37,7 +37,7 @@
 
         this.get('#/login/:token', function (token) {
             loginController.auth(token);
-            
+
             this.redirect('#/home');
         });
 

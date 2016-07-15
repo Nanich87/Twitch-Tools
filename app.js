@@ -1,8 +1,12 @@
-/* global multiTwitchController, videoController, loginController, contactController, aboutController, downloadController, channelController, homeController */
+/* global multiTwitchController, videoController, authController, contactController, aboutController, downloadController, channelController, homeController, authService, page */
 
 (function () {
     var container = '#content';
     var language = 'en';
+    var isAuthenticated = authService.isLoggedIn();
+
+    page.auth.setUserDetails(authService.getLoggedInUser());
+    page.auth.setAuthTabDetails({title: isAuthenticated ? 'Logout' : 'Login', href: isAuthenticated ? '#/logout' : '#/login'});
 
     var app = Sammy(container, function () {
         this.get('#/', function () {
@@ -29,12 +33,25 @@
             videoController.play(video, language);
         });
 
-        this.get('#/login', function () {
-            loginController.init(container);
+        this.get('#/login', function (content) {
+            if (authService.isLoggedIn()) {
+                this.redirect('#/home');
+            } else {
+                authController.init(content);
+            }
+        });
+
+        this.get('#/logout', function () {
+            authController.logout(language);
+            
+            page.auth.setUserDetails(authService.getLoggedInUser());
+            page.auth.setAuthTabDetails({title: 'Login', href: '#/login'});
+
+            this.redirect('#/home');
         });
 
         this.get('#/login/:token', function (token) {
-            loginController.auth(token);
+            authController.auth(token, language);
 
             this.redirect('#/home');
         });

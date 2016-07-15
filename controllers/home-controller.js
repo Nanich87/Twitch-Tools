@@ -1,4 +1,4 @@
-/* global data, lang, moment, pagination, toastr, page, validator, swfobject, Twitch, templates */
+/* global data, lang, moment, pagination, toastr, page, validator, swfobject, Twitch, templates, authService */
 
 var homeController = (function () {
 
@@ -9,12 +9,10 @@ var homeController = (function () {
         page.title.set(pageTitle);
 
         page.nav.active(1);
-
+        
         var loadingImage = page.image.createLoadingImage({src: 'resources/images/loading.png'});
 
         $(container).load(pageTemplate, function () {
-            var user = $('.header-user-container');
-
             var featuredStreamsContainer = $('.featured');
             featuredStreamsContainer.html(loadingImage);
 
@@ -38,10 +36,6 @@ var homeController = (function () {
             var uxButtonStream = $('#stream');
             var uxButtonPreview = $('#preview');
             var uxButtonDownload = $('#download');
-
-            if (localStorage.getItem('username') !== null) {
-                user.empty().append('Welcome, ' + localStorage.getItem('username'));
-            }
 
             uxButtonStream.on('click', function () {
                 var channelName = channel.val().trim();
@@ -133,7 +127,7 @@ var homeController = (function () {
                 var channelName = channel.val().trim();
                 if (validator.validate.channel(channelName) === false) {
                     toastr.error(lang.error.channel.name[language]);
-                    
+
                     return;
                 }
 

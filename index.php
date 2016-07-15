@@ -46,7 +46,7 @@
                     <a data-item-id="4" title="Download past broadcasts and highlights" href="#/download">Download</a>
                 </li>
                 <li class="nav-item">
-                    <a data-item-id="5" title="Login" href="#/login">Login</a>
+                    <a id="auth-tab" data-item-id="5" title="Login" href="#/login">Login</a>
                 </li>
                 <li class="nav-item">
                     <a data-item-id="2" title="MultiTwitch" href="#/multitwitch">MultiTwitch</a>
@@ -96,12 +96,15 @@
         <script src="helpers/validator.js"></script>
         <script src="helpers/pagination.js"></script>
         <script src="helpers/page.js"></script>
+        
+        <!-- Application: Services -->
+        <script src="services/auth-service.js"></script>
 
         <!-- Application: Controllers -->
         <script src="controllers/home-controller.js"></script>
         <script src="controllers/video-controller.js"></script>
         <script src="controllers/multi-twitch-controller.js"></script>
-        <script src="controllers/login-controller.js"></script>
+        <script src="controllers/auth-controller.js"></script>
         <script src="controllers/contact-controller.js"></script>
         <script src="controllers/about-controller.js"></script>
         <script src="controllers/download-controller.js"></script>
@@ -125,7 +128,6 @@
 
             ga('create', 'UA-39345597-5', 'auto');
             ga('send', 'pageview');
-
         </script>
     </body>
 </html>

@@ -5,6 +5,18 @@ var lang = (function () {
                 en: 'This video cannot be found!'
             }
         },
+        auth: {
+            login: {
+                success: {
+                    en: 'You have successfully logged in.'
+                }
+            },
+            logout: {
+                success: {
+                    en: 'You have successfully logged out.'
+                }
+            }
+        },
         error: {
             channel: {
                 name: {

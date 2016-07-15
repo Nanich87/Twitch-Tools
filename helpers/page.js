@@ -1,4 +1,4 @@
-/* global moment */
+/* global moment, authService */
 
 var page = (function () {
 
@@ -205,9 +205,25 @@ var page = (function () {
         return button;
     }
 
+    function setUserDetails(username) {
+        var userContainer = $('.header-user-container');
+        userContainer.empty()
+                .append('Welcome, ' + username);
+    }
+
+    function setAuthTabDetails(data) {
+        var authTab = $('#auth-tab');
+        authTab.attr('href', data.href)
+                .html(data.title);
+    }
+
     return {
         title: {
             set: setPageTitle
+        },
+        auth: {
+            setUserDetails: setUserDetails,
+            setAuthTabDetails: setAuthTabDetails
         },
         section: {
             setActive: setActiveSection,

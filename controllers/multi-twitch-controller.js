@@ -1,14 +1,15 @@
-/* global page, validator, selectedLanguage, toastr, lang */
+/* global page, validator, toastr, lang */
 
 var multiTwitchController = (function () {
+
     var pageTitle = 'MultiTwitch';
-    var pageId = 2;
+    var pageID = 2;
     var pageTemplate = '../resources/views/pages/multitwitch.handlebars';
 
     function initPage(container, language, context) {
         page.title.set(pageTitle);
 
-        page.nav.active(pageId);
+        page.nav.active(pageID);
 
         var channelNamesCollection = [];
 
@@ -99,17 +100,22 @@ var multiTwitchController = (function () {
                     }
                 }
 
-                playersContainer.children().height(Math.floor(bestHeight));
-                playersContainer.children().width(Math.floor(bestWidth));
+                playersContainer
+                    .children()
+                    .height(Math.floor(bestHeight));
+                playersContainer
+                    .children()
+                    .width(Math.floor(bestWidth));
             }
 
             function addChannel(channelName) {
                 channelNamesCollection.push(channelName);
 
                 var player = $(document.createElement('object'));
-                player.attr('data', 'http://www.twitch.tv/widgets/live_embed_player.swf?channel=' + channelName);
-                player.attr('data-id', channelName);
-                player.addClass('stream');
+                player
+                    .attr('data', 'http://www.twitch.tv/widgets/live_embed_player.swf?channel=' + channelName)
+                    .attr('data-id', channelName)
+                    .addClass('stream');
 
                 playersContainer.append(player);
 
@@ -117,15 +123,17 @@ var multiTwitchController = (function () {
                 channelItem.attr('data-id', channelName);
 
                 var channelItemName = $(document.createElement('span'));
-                channelItemName.addClass('stream-text');
-                channelItemName.text(channelName);
+                channelItemName
+                    .addClass('stream-text')
+                    .text(channelName);
 
                 channelItem.append(channelItemName);
 
                 var uxButtonRemovePlayer = $(document.createElement('button'));
-                uxButtonRemovePlayer.addClass('remove-channel btn btn-warning');
-                uxButtonRemovePlayer.attr('data-id', channelName);
-                uxButtonRemovePlayer.text('Remove');
+                uxButtonRemovePlayer
+                    .addClass('remove-channel btn btn-warning')
+                    .attr('data-id', channelName)
+                    .text('Remove');
 
                 channelItem.append(uxButtonRemovePlayer);
 
@@ -153,4 +161,4 @@ var multiTwitchController = (function () {
     return {
         init: initPage
     };
-}());
+} ());

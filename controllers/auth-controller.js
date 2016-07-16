@@ -3,6 +3,7 @@
 var authController = (function () {
 
     var pageContent;
+    var pageID = 5;
 
     function initPage(context) {
         if (authService.isLoggedIn()) {
@@ -22,33 +23,35 @@ var authController = (function () {
         }
 
         page.title.set(pageContent.pageTitle);
-        page.nav.active(5);
+        page.nav.active(pageID);
 
-        templates.get('auth')
-                .then(function (template) {
-                    context.$element().html(template(pageContent));
-                });
+        templates
+            .get('auth')
+            .then(function (template) {
+                context.$element().html(template(pageContent));
+            });
     }
 
     function auth(context, language) {
         var access_token = context.params.token || null;
 
         if (access_token !== null) {
-            data.user.auth(access_token)
-                    .then(function (response) {
-                        authService.loginUser(response.token.user_name, access_token);
-                
-                        page.auth.setUserDetails(response.token.user_name);
-                        page.auth.setAuthTabDetails({title: 'Logout', href: '#/logout'});
-                        
-                        toastr.success(lang.auth.login.success[language]);
-                    });
+            data.user
+                .auth(access_token)
+                .then(function (response) {
+                    authService.loginUser(response.token.user_name, access_token);
+
+                    page.auth.setUserDetails(response.token.user_name);
+                    page.auth.setAuthTabDetails({ title: 'Logout', href: '#/logout' });
+
+                    toastr.success(lang.auth.login.success[language]);
+                });
         }
     }
 
     function logout(language) {
         authService.logoutUser();
-        
+
         toastr.success(lang.auth.logout.success[language]);
     }
 
@@ -57,4 +60,4 @@ var authController = (function () {
         auth: auth,
         logout: logout
     };
-}());
+} ());

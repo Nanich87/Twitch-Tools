@@ -34,4 +34,4 @@ var pagination = (function () {
     return {
         create: createPagination
     };
-}());
+} ());

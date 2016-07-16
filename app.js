@@ -6,7 +6,7 @@
     var isAuthenticated = authService.isLoggedIn();
 
     page.auth.setUserDetails(authService.getLoggedInUser());
-    page.auth.setAuthTabDetails({title: isAuthenticated ? 'Logout' : 'Login', href: isAuthenticated ? '#/logout' : '#/login'});
+    page.auth.setAuthTabDetails({ title: isAuthenticated ? 'Logout' : 'Login', href: isAuthenticated ? '#/logout' : '#/login' });
 
     var app = Sammy(container, function () {
         this.get('#/', function () {
@@ -43,9 +43,9 @@
 
         this.get('#/logout', function () {
             authController.logout(language);
-            
+
             page.auth.setUserDetails(authService.getLoggedInUser());
-            page.auth.setAuthTabDetails({title: 'Login', href: '#/login'});
+            page.auth.setAuthTabDetails({ title: 'Login', href: '#/login' });
 
             this.redirect('#/home');
         });
@@ -80,4 +80,4 @@
     $(function () {
         app.run('#/');
     });
-}());
+} ());

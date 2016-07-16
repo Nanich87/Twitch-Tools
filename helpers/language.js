@@ -15,6 +15,21 @@ var lang = (function () {
                 success: {
                     en: 'You have successfully logged out.'
                 }
+            },
+            notAuthorized: {
+                en: 'You are not logged in!'
+            }
+        },
+        channel: {
+            follow: {
+                success: {
+                    en: 'You have successfully followed a channel.'
+                }
+            },
+            unfollow: {
+                success: {
+                    en: 'You have successfully unfollowed a channel.'
+                }
             }
         },
         error: {
@@ -45,4 +60,4 @@ var lang = (function () {
             }
         }
     };
-}());
+} ());

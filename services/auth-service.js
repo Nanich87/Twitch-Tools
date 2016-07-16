@@ -1,5 +1,5 @@
 var authService = (function () {
-    
+
     function isLoggedIn() {
         if (localStorage.getItem('access_token') === null || localStorage.getItem('username') === null) {
             return false;
@@ -16,8 +16,8 @@ var authService = (function () {
         localStorage.setItem('access_token', accessToken);
         localStorage.setItem('username', username);
     }
-    
-    function logoutUser(){
+
+    function logoutUser() {
         localStorage.removeItem('access_token');
         localStorage.removeItem('username');
     }
@@ -28,4 +28,4 @@ var authService = (function () {
         getLoggedInUser: getLoggedInUser,
         logoutUser: logoutUser
     };
-}());
+} ());

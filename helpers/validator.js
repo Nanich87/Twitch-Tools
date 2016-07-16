@@ -18,4 +18,4 @@ var validator = (function () {
             channel: validateChannelName
         }
     };
-}());
+} ());
